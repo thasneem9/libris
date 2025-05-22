@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar"
 import Plank from "./components/Plank"
+import Book from "./components/Book"
 import "./app.css"
 function App() {
 
@@ -7,7 +8,10 @@ function App() {
   return (
     <>
      <Navbar/>
-     <Plank/>
+     <div className="plank-wrapper">
+    <Book />
+    <Plank />
+  </div>
     </>
   )
 }

@@ -3,8 +3,11 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow-y: hidden;
+ overflow-y: hidden; 
 }
 body{
-      background-image: url('../assets/light_wood.jpeg');
+      background-image: url('./images/light_wood.jpeg');
+}
+.plank-wrapper {
+  position: relative;
 }

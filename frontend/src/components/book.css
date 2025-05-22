@@ -1,0 +1,32 @@
+.book {
+  height: 145px;
+  width: 120px;
+  background-size: cover;         /* This makes the image cover the div */
+  background-position: center;    /* Center the image */
+  background-repeat: no-repeat;   /* Prevent it from repeating */
+border-radius: 3%;
+  background-size: cover;   
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.9); /* Bottom shadow */     
+ /*  border: 0.5px solid black; */
+  
+ 
+}
+.book:hover{
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
+.book-container{
+   position: absolute;
+  top: 82px; /* from navbar */
+  left: 28%;
+
+  z-index: 10;
+
+/* border: 3px solid blue; */
+width:43%;
+
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+gap:55px;
+}
