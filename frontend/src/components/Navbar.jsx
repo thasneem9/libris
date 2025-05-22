@@ -1,7 +1,7 @@
 import { FaSearch } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import './navbar.css';
-import lights from '../images/lights.png'
+import lights from '../images/lightsx.png'
 const Navbar = () => {
    
   return (
@@ -24,12 +24,12 @@ const Navbar = () => {
     <GiHamburgerMenu size={30} className="menu-icon" />
   </div>
 </div>
-{/*  <div className="lights-container">
+ <div className="lights-container">
       <img src={lights} className="lights"></img>
       <img src={lights} className="lights"></img>
     
-    </div>  */}
-  <ul className="lightrope">
+    </div>  
+ {/*  <ul className="lightrope">
   <li></li>
   <li></li>
   <li></li>
@@ -73,7 +73,7 @@ const Navbar = () => {
   <li></li>
   <li></li>
 </ul>
-
+ */}
      
 </>
   );
