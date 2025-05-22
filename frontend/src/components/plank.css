@@ -3,8 +3,8 @@
     flex-direction: column;
 
     /*  border: 2px solid black; */
-    gap:160px;
-   margin-top:140px;
+    gap:175px;
+   margin-top:135px;
    
  margin-left:24%;
    width:50%;
@@ -16,8 +16,7 @@
     background-color: #652f03 ; 
  clip-path: polygon(4% 0, 96% 0, 100% 100%, 0% 100%);
 
-/* border: 3px solid black; 
- */
+/* border: 3px solid black;  */
 }
 .plank-bottom{
     width:100%;
@@ -27,3 +26,6 @@
 
 }
 
+@media screen and (max-width:600px){
+
+}
