@@ -4,10 +4,8 @@ html, body {
   margin: 0;
   padding: 0;
 /*  overflow-y: hidden;  */
+overflow-x: auto;
 }
 body{
       background-image: url('./images/light_wood.jpeg');
-}
-.plank-wrapper {
-  position: relative;
 }

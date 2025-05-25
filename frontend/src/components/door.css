@@ -2,7 +2,9 @@
     width:340px;
     height:550px;
    /*  border: 6px solid purple; */
-    margin-top:50px;
+    z-index:2px;
+    bottom:510px;
+    position:relative;
     padding:0px;
 }
 .door:hover{

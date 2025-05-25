@@ -1,5 +1,5 @@
 .main-container{
-  /*  border: 5px solid red;  */
+/*   border: 5px solid red;   */
 
   display:flex;
   flex-direction: row;
@@ -9,9 +9,25 @@
   position: relative; /* below part is so that books appear on top of container */
   z-index: 1;
   height:195%;
-  bottom:671px;
+  bottom:1170px;
 
    
+}
+.robot-wrapper {
+  position: relative;
+}
+.robot:hover{
+  transform:scale(1.1);
+  transition:transform 0.2s ease;
+}
+.robot {
+  position: absolute;
+  right: 25px; /* adjust this to snugly place it right of the right plank */
+  top: -1580px;   /* adjust this to align with plank level */
+  z-index: 2;
+  width:360px;
+    height:420px;
+/* border: 6px solid purple;  */
 }
 
 
