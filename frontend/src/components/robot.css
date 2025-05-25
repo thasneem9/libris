@@ -158,7 +158,9 @@ position: absolute;
   border: none;
   cursor: pointer;
 }
-.book-icon{
+.close-btn:hover{
+    transform:scale(1.2);
+    transition:transform 0.2s ease;
 
 }
 .settings-title{
