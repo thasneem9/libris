@@ -1,9 +1,12 @@
-import React from 'react'
+import door from '../images/doorx.png'
 import './plank.css'
+import './door.css'
 const Plank = () => {
   return (
     <>
+<img src={door} className="door"/>
 <div className='main-container'>
+
   <div className='plank-left'></div>
   <div className='plank-left-dark'></div>
 
@@ -42,6 +45,8 @@ const Plank = () => {
  <div className='plank-right'></div>
  <div className='plank-right-dark'></div>
   </div>
+
+ 
     </>
   )
 }

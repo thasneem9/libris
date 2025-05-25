@@ -17,7 +17,7 @@ border-radius: 3%;
 }
 .book-container{
    position: absolute;
-  top: 82px; /* from navbar */
+  top: 13px; /* from navbar */
   left: 28%;
 
   z-index: 10;

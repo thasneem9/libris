@@ -1,8 +1,10 @@
 import './door.css'
-
+import door from '../images/doorx.png'
 const Door = () => {
   return (
-    <div>Door</div>
+    <>
+
+    </>
   )
 }
 

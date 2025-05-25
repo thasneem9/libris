@@ -1,16 +1,20 @@
 .main-container{
-/*   border: 5px solid red; */
+  /*  border: 5px solid red;  */
+
   display:flex;
   flex-direction: row;
   margin-left:24%;
   width:50%;
 
-  margin-top:-65px; 
   position: relative; /* below part is so that books appear on top of container */
   z-index: 1;
-  height:200%;
+  height:195%;
+  bottom:671px;
+
    
 }
+
+
 .none{
   display:none;
   /* the topmostplank is hidden, to easily make left and right plank accomadte entire height..not ideal but works perfectly */
