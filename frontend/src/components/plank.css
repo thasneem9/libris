@@ -13,23 +13,6 @@
 
    
 }
-.robot-wrapper {
-  position: relative;
-}
-.robot:hover{
-  transform:scale(1.1);
-  transition:transform 0.2s ease;
-}
-.robot {
-  position: absolute;
-  right: 25px; /* adjust this to snugly place it right of the right plank */
-  top: -1580px;   /* adjust this to align with plank level */
-  z-index: 2;
-  width:360px;
-    height:420px;
-/* border: 6px solid purple;  */
-}
-
 
 .none{
   display:none;
@@ -76,5 +59,4 @@
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.6); 
 
 }
-
 

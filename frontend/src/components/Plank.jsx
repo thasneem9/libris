@@ -1,9 +1,13 @@
 import door from '../images/doorx.png'
 import robot from '../images/robotx.png'
+import { IoMdCloseCircle } from "react-icons/io";
+import { useState } from 'react'
 
 import './plank.css'
 import './door.css'
+
 const Plank = () => {
+  const [settings, setSettings]=useState(false);
   return (
     <>
     
@@ -50,11 +54,12 @@ const Plank = () => {
 
 </div>
 
- 
-<div className="robot-wrapper">
-  <img src={robot} className="robot" />
-</div>
- 
+
+
+
+
+
+
     </>
   )
 }
