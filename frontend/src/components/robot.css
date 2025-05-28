@@ -79,7 +79,7 @@ justify-content: space-around;
     display: flex;
     flex-direction: column;
     width:60%;
-      /*  border: 5px solid rgb(43, 255, 0); */
+     /*   border: 5px solid rgb(43, 255, 0);  */
     align-items: center;
  gap:5px;
       background-color: rgb(255, 255, 255);
@@ -116,34 +116,46 @@ justify-content: space-around;
         font-size: 25px;
         text-align: left;
         color: white;
+
+
+  position: relative;
+  padding-bottom: 4px; /* space for the underline */
 }
 .col-1 > button.clicked{
     background-color:#ffffffef;
     color: black;
-    border-radius: 5px;
+    border-radius: 10px;
   
     cursor: pointer;
+    padding: 10px;
 
        transform:scale(1.1);
   transition:transform 0.1s ease;
 
 }
+
+
 .inner-box>button{
     width:130px;
     height:40px;
     margin:10px;
         background-color:#e836e896 ;            border-radius: 15px;
 }
-.col-1>button:hover{
-    background-color:#ffffffef;
-    color: black;
-    border-radius: 5px;
-  
-    cursor: pointer;
 
-       transform:scale(1.1);
-  transition:transform 0.1s ease;
-  
+.col-1 > button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: rgb(249, 245, 245); /* underline color */
+  transition: width 0.2s ease;
+}
+
+.col-1 > button:hover::after {
+  width: 60%;
+  margin-left:9px;
 }
 .col-1>p{
     color: white;
@@ -180,3 +192,99 @@ position: absolute;
 
 
 /* ROBOT SETTINGS---------------------------------------------------------------------------- */
+
+/* ACCOUNT BUTTON AND CONTENT---------------------------------------------------------------------------------------------- */
+.account-content{
+  border:0.3px solid gray;
+  width:80%;
+  height: 65%;
+  border-radius: 10px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+
+}
+.account-heading{
+  margin:20px;
+/*   border:2px solid red;
+ */}
+.account-heading h1{
+  color: #3A3285;
+  font-size: 45px;
+  font-family:Georgia, 'Times New Roman', Times, serif
+}
+.account-heading p{
+  font-size: 20px;
+  text-align: center;
+  margin-top: 10px;;
+}
+.names-row{
+  display: flex;
+  flex-direction: row;
+ gap:40px;
+ margin:10px;
+/*  border: 1px solid red;
+ */}
+.email-row, .password-row{
+  margin-left:10px;
+  margin-bottom:10px;
+}
+.names-input{
+  background-color: #ffffffef;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding:10px;
+  width:165px;
+  margin-top: 5px;
+}
+.email-input,.password-input{
+  background-color: #ffffffef;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding:10px;
+  width:365px;
+  margin-top: 5px;
+}
+.red{
+  color:rgb(197, 35, 35);
+  font-size: 20px;
+}
+.account-button{
+
+  margin-top:15px;
+ display:flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ gap:15px;
+
+}
+
+.account-button>button{
+ 
+     background-color: #4c4495;
+  color: white;
+  padding:10px;
+  
+ border-radius:10px;
+ width:200px;
+ border:none;
+ 
+}
+.account-button>button:hover{
+     transform:scale(1.1);
+  transition:transform 0.2s ease;
+  background-color: #3a3285f1;
+  }
+.account-button>p{
+  font-size:19px;
+}
+#blue{
+  color: #3A3285;
+}
+
+
+#blue:hover{
+color:#686583;
+}
+
+/* ACCOUNT BUTTON AND CONTENT---------------------------------------------------------------------------------------------- */

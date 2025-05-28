@@ -28,7 +28,7 @@ const Robot = () => {
 
         <div className='popup-columns'>
           <div className='col-1'>
-            <button onClick={()=>setRightCol('account')} className={rightCol==='account'?'clicked':''}>Account</button>
+            <button onClick={()=>setRightCol('account')} className={(rightCol === 'account' || rightCol === 'login')?'clicked':''}>Account</button>
             <button onClick={()=>setRightCol('addBook')} className={rightCol==='addBook'?'clicked':''}>Add Book</button>
             <button onClick={()=>setRightCol('quotes')} className={rightCol==='quotes'?'clicked':''}>Qoutes</button>
             <button onClick={()=>setRightCol('highlights')} className={rightCol==='highlights'?'clicked':''}>Highlights</button>
@@ -39,9 +39,40 @@ const Robot = () => {
           <div className='col-2'>
            {rightCol==='account' && (
             <>
-            
-              
-            </>
+            <div className='account-heading'>
+              <h1>Welcome to Libris!</h1>
+              <p>Sign up to enjoy all our cool features!</p>
+            </div>
+              <div className='account-content'>
+                  <form className='form'>
+                      <div className='names-row'>
+                      <div>
+                     <label>First Name<span className='red'>*</span></label><br/>
+                      <input placeholder='Joni Mitchel' className='names-input' />
+                      </div>
+                      <div>
+                       <label>Username<span className='red'>*</span></label><br/>
+                      <input placeholder='janexadams12'  className='names-input'required />
+                      </div>
+                      </div>
+                      
+                      <div className='email-row'>
+                      <label>Email<span className='red'>*</span></label><br/>
+                      <input placeholder='krithik@gmail.com' className='email-input' required/>
+                      </div>
+
+                      <div className="password-row">
+                      <label>Password<span className='red'>*</span></label><br/>
+                      <input placeholder='Strong Password' className='password-input' type="password" required/>
+                      </div>
+
+                  </form>
+                  <div className='account-button'>
+                  <button> Sign Up</button>
+                  <p> Already a User? <span id='blue' onClick={()=>setRightCol('login')} className={rightCol==='login'?'':''}>login</span></p>
+                  </div>
+            </div>   
+          </>
            )}
            {rightCol==='addBook' && (
             <>
@@ -73,6 +104,33 @@ const Robot = () => {
            {rightCol==='timeStats' && (
             <>
              <h1></h1>
+            </>
+           )}
+           {rightCol==='login' && (
+            <>
+             <div className='account-heading'>
+              <h1>Welcome Back!</h1>
+              <p>Log in to access prveious readings</p>
+            </div>
+              <div className='account-content'>
+                  <form className='form'>
+                    
+                      <div className='email-row'>
+                      <label>Username<span className='red'>*</span></label><br/>
+                      <input placeholder='krithik@gmail.com' className='email-input'/>
+                      </div>
+
+                      <div className="password-row">
+                      <label>Password<span className='red'>*</span></label><br/>
+                      <input placeholder='Password' className='password-input' type="password"/>
+                      </div>
+
+                  </form>
+                  <div className='account-button'>
+                  <button> Log in</button>
+                  <p> Don't have an acccount? <span id="blue" onClick={()=>{setRightCol('account')}}>Signup</span></p>
+                  </div>
+            </div>   
             </>
            )}
           
