@@ -2,6 +2,7 @@
   position: relative;
 
 }
+
 .robot:hover{
   transform:scale(1.1);
   transition:transform 0.2s ease;
@@ -81,18 +82,18 @@ justify-content: space-around;
       /*  border: 5px solid rgb(43, 255, 0); */
     align-items: center;
  gap:5px;
-      background-color: rgba(255, 255, 255, 0.484);
+      background-color: rgb(255, 255, 255);
       border-radius:20px
 }
 .inner-box>button:hover{
 
-  background-color:#b55ab5e7 ;
+  background-color:#eb88fce7 ;
   transform:scale(1.1);
   transition:transform 0.2s ease;
 }
 .col-2>button:hover{
 
-  background-color:#b55ab5e7 ;
+  background-color:#eb88fce7 ;
    transform:scale(1.1);
   transition:transform 0.2s ease;
 }
@@ -116,12 +117,22 @@ justify-content: space-around;
         text-align: left;
         color: white;
 }
+.col-1 > button.clicked{
+    background-color:#ffffffef;
+    color: black;
+    border-radius: 5px;
+  
+    cursor: pointer;
+
+       transform:scale(1.1);
+  transition:transform 0.1s ease;
+
+}
 .inner-box>button{
     width:130px;
     height:40px;
     margin:10px;
-        background-color:#85328571 ;
-            border-radius: 15px;
+        background-color:#e836e896 ;            border-radius: 15px;
 }
 .col-1>button:hover{
     background-color:#ffffffef;
@@ -145,7 +156,7 @@ justify-content: space-around;
 .col-2>button{
     padding:10px;
     margin:15px;
-        background-color:#b55ab596 ;
+        background-color:#e836e896 ;
             border-radius: 15px;
 
 }
