@@ -65,7 +65,7 @@ console.log(inputs)
 
         <div className='popup-columns'>
           <div className='col-1'>
-            <button onClick={()=>setRightCol('account')} className={(rightCol === 'account' || rightCol === 'login')?'clicked':''}>Account</button>
+            <button onClick={()=>setRightCol('account')} className={(rightCol === 'account'||rightCol==='login'  )?'clicked':''}>Account</button>
             <button onClick={()=>setRightCol('addBook')} className={rightCol==='addBook'?'clicked':''}>Add Book</button>
             <button onClick={()=>setRightCol('quotes')} className={rightCol==='quotes'?'clicked':''}>Qoutes</button>
             <button onClick={()=>setRightCol('highlights')} className={rightCol==='highlights'?'clicked':''}>Highlights</button>
@@ -114,7 +114,7 @@ console.log(inputs)
                   </div>
                   <div className='account-button'>
                   <button type="button"onClick={handleSignup}> Sign Up</button>
-                  <p> Already a User? <span id='blue' onClick={()=>setRightCol('login')} className={rightCol==='login'?'':''}>login</span></p>
+                  <p> Already a User? <span id='blue' onClick={()=>setRightCol('login')}>login</span></p>
                   </div>
             </div>   
           </>
@@ -175,7 +175,7 @@ console.log(inputs)
                   </form>
                   <div className='account-button'>
                   <button> Log in</button>
-                  <p> Don't have an acccount? <span id="blue" onClick={setRightCol('account')}>Signup</span></p>
+                  <p> Don't have an acccount? <span id="blue" onClick={()=>{setRightCol('account')}}>Signup</span></p>
                   </div>
             </div>   
             </>
