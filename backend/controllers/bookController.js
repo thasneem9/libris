@@ -1,5 +1,42 @@
 import Book from '../models/Book.js'
 import User from '../models/User.js'
+import express from "express";
+import dotenv from 'dotenv';
+import multer from "multer";
+import multerS3 from "multer-s3";
+import AWS from "aws-sdk";
+
+dotenv.config();
+
+const s3 = new AWS.S3({
+  accessKeyId: process.env.S3_ACCESS_KEY,
+  secretAccessKey: process.env.S3_SECRET_KEY,
+  region: process.env.S3_REGION,
+});
+
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: process.env.S3_BUCKET_NAME,
+    metadata: (req, file, cb) => {
+      cb(null, { fieldName: file.fieldname });
+    },
+    key: (req, file, cb) => {
+      cb(null, file.originalname);
+    },
+  }),
+}).single("pdf");
+
+const uploadToAws = (req, res) => {
+  upload(req, res, (err) => {
+    if (err) {
+      console.error("Upload Error:", err);
+      return res.status(500).json({ error: "Upload failed", details: err.message });
+    }
+    res.status(200).json({ msg: "File uploaded successfully", file: req.file });
+  });
+};
+
 
 const addBook=async(req,res)=>{
     try {
@@ -29,4 +66,7 @@ try {
 }
 
 }
-export {addBook,getBooks} 
+
+
+
+export {addBook,getBooks, uploadToAws} 

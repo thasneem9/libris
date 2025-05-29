@@ -30,40 +30,44 @@ const Robot = () => {
     category: '',
   });
 
-  const handleChooseFile = () => {
+
+ const handleChooseFile = () => {
     document.getElementById('hiddenPdfInput').click();
   };
+  const handleMetadataSubmit = async () => {
+    //sendJUST file to AWS using fetch..not array it was single...
+    //ignoting meta data here
 
+       const formData=new FormData();
+        formData.append('pdf', file);
+      
+     
+    const res = await fetch('/api/books/upload', {
+      method: 'POST',
+      body: formData,
+       credentials:'include',
+    });
+    const data=await res.json();
+    console.log(data)
+
+    if (res.ok) {
+      alert('Book was uploaded!');
+      setFormOpen(false);
+    }
+
+  };
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile && selectedFile.type === 'application/pdf') {
       setFile(selectedFile);
-      setPreviewURL(URL.createObjectURL(selectedFile)); // generate blob URL
-      setMetadata((prev) => ({
+
+
+
+       setMetadata((prev) => ({
         ...prev,
         title: selectedFile.name.replace('.pdf', ''),
       }));
       setFormOpen(true); // show popup/modal to get metadata
-    }
-  };
-
-  const handleMetadataSubmit = async () => {
-    const formData = {
-      ...metadata,
-      fileName: file.name,
-    };
-
-    const res = await fetch('/api/books/addBook', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData),
-    });
-
-    if (res.ok) {
-      alert('Book metadata saved!');
-      setFormOpen(false);
     }
   };
     const handleSignup=async()=>{
@@ -209,6 +213,7 @@ console.log(inputs)
                   accept="application/pdf"
                   style={{ display: 'none' }}
                   onChange={handleFileChange}
+
              />
             </div>
 
