@@ -27,4 +27,23 @@ const signupUser=async(req,res)=>{
     }
 
 }
-export {signupUser}
+const loginUser=async(req,res)=>{
+    try {
+        const {username,password}=req.body;
+    
+        const user=await User.findOne({username})
+        if(!user){
+            return res.status(404).json({message:"User does not exist"})
+        }
+        const isMatch=await bcrypt.compare(password,user.password);
+        if(!isMatch){
+            return res.status(401).json({message:"Invalid Credentials"});
+        }
+        res.status(200).json({message:"Login Successful"});
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({error:"Internal Server Error"})
+        
+    }
+}
+export {signupUser,loginUser}

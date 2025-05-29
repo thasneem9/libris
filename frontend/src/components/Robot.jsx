@@ -16,6 +16,10 @@ const Robot = () => {
       password:'',
       email:''
     });
+    const [loginInputs,setLoginInputs]=useState({
+      username:'',
+      password:''
+    })
     const handleSignup=async()=>{
       
 console.log(inputs)
@@ -45,7 +49,34 @@ console.log(inputs)
 
       
     }
+const handleLogin=async()=>{
+  try {
+    console.log(loginInputs)
+    const res=await  fetch('/api/users/login',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      credentials:'include',
+      body:JSON.stringify(loginInputs)
 
+    })
+    const data=await res.json()
+     console.log(data)
+
+        if(res.status===409){
+          alert(data.message || 'User Already Exists, try Logging in')
+        }else if(res.status===200){
+          alert(data.message)
+        }
+        if(data.error){
+          console.log(data.error)
+        }
+        
+    
+  } catch (error) {
+    console.log(error)
+    
+  }
+}
 
   return (
     <>
@@ -163,18 +194,21 @@ console.log(inputs)
                       <div className='email-row'>
                       <label>Username<span className='red'>*</span></label><br/>
                       <input placeholder='krithik@gmail.com' className='email-input' required
-                     
+                      onChange={(e) => setLoginInputs({ ...loginInputs, username: e.target.value })}
+                      value={loginInputs.username}                     
                       />
                       </div>
 
                       <div className="password-row">
                       <label>Password<span className='red'>*</span></label><br/>
-                      <input placeholder='Password' className='password-input' type="password"/>
+                      <input placeholder='Password' className='password-input' type="password" required  
+                      onChange={(e) => setLoginInputs({ ...loginInputs, password: e.target.value })}
+                      value={loginInputs.password}    />
                       </div>
 
                   </form>
                   <div className='account-button'>
-                  <button> Log in</button>
+                  <button type="button" onClick={handleLogin}> Log in</button>
                   <p> Don't have an acccount? <span id="blue" onClick={()=>{setRightCol('account')}}>Signup</span></p>
                   </div>
             </div>   
