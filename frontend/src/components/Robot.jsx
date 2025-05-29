@@ -3,12 +3,49 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { useState } from 'react'
 import './robot.css'
 import { IoBookOutline } from "react-icons/io5";
-
+import axios from 'axios'
 
 const Robot = () => {
     const [settings, setSettings]=useState(false);
   
     const [rightCol, setRightCol]=useState('account')
+
+    const [inputs,setInputs]=useState({
+      name:'',
+      username:'',
+      password:'',
+      email:''
+    });
+    const handleSignup=async()=>{
+      
+console.log(inputs)
+      try {
+        const res=await fetch('/api/users/signup',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          credentials:'include',
+          body:JSON.stringify(inputs)
+        })
+        const data=await res.json();
+        console.log(data)
+
+        if(res.status===409){
+          alert(data.message || 'User Already Exists, try Logging in')
+        }else if(res.status===200){
+          alert(data.message)
+        }
+        if(data.error){
+          console.log(data.error)
+        }
+        
+      } catch (error) {
+                  console.log(error)
+
+      }
+
+      
+    }
+
 
   return (
     <>
@@ -44,31 +81,39 @@ const Robot = () => {
               <p>Sign up to enjoy all our cool features!</p>
             </div>
               <div className='account-content'>
-                  <form className='form'>
+                  <div>
                       <div className='names-row'>
                       <div>
                      <label>First Name<span className='red'>*</span></label><br/>
-                      <input placeholder='Joni Mitchel' className='names-input' />
+                      <input placeholder='Joni Mitchel' className='names-input' required
+									onChange={(e) => setInputs({ ...inputs, name: e.target.value })}
+                       value={inputs.name} />
                       </div>
                       <div>
                        <label>Username<span className='red'>*</span></label><br/>
-                      <input placeholder='janexadams12'  className='names-input'required />
+                      <input placeholder='janexadams12'  className='names-input'required
+									onChange={(e) => setInputs({ ...inputs, username: e.target.value })}
+                      value={inputs.username}/>
                       </div>
                       </div>
                       
                       <div className='email-row'>
                       <label>Email<span className='red'>*</span></label><br/>
-                      <input placeholder='krithik@gmail.com' className='email-input' required/>
+                      <input placeholder='krithik@gmail.com' className='email-input' required
+									onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
+                      value={inputs.email}/>
                       </div>
 
                       <div className="password-row">
                       <label>Password<span className='red'>*</span></label><br/>
-                      <input placeholder='Strong Password' className='password-input' type="password" required/>
+                      <input placeholder='Strong Password' className='password-input' type="password" required
+									onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
+                      value={inputs.password}/>
                       </div>
 
-                  </form>
+                  </div>
                   <div className='account-button'>
-                  <button> Sign Up</button>
+                  <button type="button"onClick={handleSignup}> Sign Up</button>
                   <p> Already a User? <span id='blue' onClick={()=>setRightCol('login')} className={rightCol==='login'?'':''}>login</span></p>
                   </div>
             </div>   
@@ -117,7 +162,9 @@ const Robot = () => {
                     
                       <div className='email-row'>
                       <label>Username<span className='red'>*</span></label><br/>
-                      <input placeholder='krithik@gmail.com' className='email-input'/>
+                      <input placeholder='krithik@gmail.com' className='email-input' required
+                     
+                      />
                       </div>
 
                       <div className="password-row">
@@ -128,7 +175,7 @@ const Robot = () => {
                   </form>
                   <div className='account-button'>
                   <button> Log in</button>
-                  <p> Don't have an acccount? <span id="blue" onClick={()=>{setRightCol('account')}}>Signup</span></p>
+                  <p> Don't have an acccount? <span id="blue" onClick={setRightCol('account')}>Signup</span></p>
                   </div>
             </div>   
             </>
