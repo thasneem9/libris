@@ -3,7 +3,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { useState } from 'react'
 import './robot.css'
 import { IoBookOutline } from "react-icons/io5";
-import axios from 'axios'
+
 
 const Robot = () => {
     const [settings, setSettings]=useState(false);
@@ -20,6 +20,52 @@ const Robot = () => {
       username:'',
       password:''
     })
+
+  const [file, setFile] = useState(null);
+  const [previewURL, setPreviewURL] = useState(null);
+  const [formOpen, setFormOpen] = useState(false);
+  const [metadata, setMetadata] = useState({
+    title: '',
+    author: '',
+    category: '',
+  });
+
+  const handleChooseFile = () => {
+    document.getElementById('hiddenPdfInput').click();
+  };
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile && selectedFile.type === 'application/pdf') {
+      setFile(selectedFile);
+      setPreviewURL(URL.createObjectURL(selectedFile)); // generate blob URL
+      setMetadata((prev) => ({
+        ...prev,
+        title: selectedFile.name.replace('.pdf', ''),
+      }));
+      setFormOpen(true); // show popup/modal to get metadata
+    }
+  };
+
+  const handleMetadataSubmit = async () => {
+    const formData = {
+      ...metadata,
+      fileName: file.name,
+    };
+
+    const res = await fetch('/api/books/addBook', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (res.ok) {
+      alert('Book metadata saved!');
+      setFormOpen(false);
+    }
+  };
     const handleSignup=async()=>{
       
 console.log(inputs)
@@ -49,42 +95,42 @@ console.log(inputs)
 
       
     }
-const handleLogin=async()=>{
-  try {
-    console.log(loginInputs)
-    const res=await  fetch('/api/users/login',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      credentials:'include',
-      body:JSON.stringify(loginInputs)
+    const handleLogin=async()=>{
+      try {
+        console.log(loginInputs)
+        const res=await  fetch('/api/users/login',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          credentials:'include',
+          body:JSON.stringify(loginInputs)
 
-    })
-    const data=await res.json()
-     console.log(data)
+        })
+        const data=await res.json()
+        console.log(data)
 
-        if(res.status===409){
-          alert(data.message || 'User Already Exists, try Logging in')
-        }else if(res.status===200){
-          alert(data.message)
-        }
-        if(data.error){
-          console.log(data.error)
-        }
+            if(res.status===409){
+              alert(data.message || 'User Already Exists, try Logging in')
+            }else if(res.status===200){
+              alert(data.message)
+            }
+            if(data.error){
+              console.log(data.error)
+            }
+            
         
-    
-  } catch (error) {
-    console.log(error)
-    
-  }
-}
-
-  return (
+      } catch (error) {
+        console.log(error)
+        
+      }
+    }
+   
+    return (
     <>
     <div className="robot-wrapper" >
-  <img src={robot} className="robot" onClick={()=>setSettings(true)} />
-</div>
+      <img src={robot} className="robot" onClick={()=>setSettings(true)} /> 
+    </div>
 
-  {settings && (
+    {settings && (
     <>
       <div className='overlay' onClick={() => setSettings(false)}></div>
 
@@ -156,11 +202,29 @@ const handleLogin=async()=>{
              <IoBookOutline  size={300} className='book-icon'/>
 
               <p>Drag and Drop a PDF File into this Box</p>
-              <button>Choose A File</button>
+              <button type="button" onClick={handleChooseFile}>Choose A File</button>
+              <input
+                  type="file"
+                  id="hiddenPdfInput"
+                  accept="application/pdf"
+                  style={{ display: 'none' }}
+                  onChange={handleFileChange}
+             />
             </div>
-            <button>Import Book</button>
+
+            {formOpen && (
+                    <div className='popup-form'>
+                      <h3>Book Info</h3>
+                      <input value={metadata.title} onChange={(e) => setMetadata({...metadata, title: e.target.value})} placeholder="Title" />
+                      <input value={metadata.author} onChange={(e) => setMetadata({...metadata, author: e.target.value})} placeholder="Author" />
+                      <input value={metadata.category} onChange={(e) => setMetadata({...metadata, category: e.target.value})} placeholder="Category" />
+                      <button  className="save-book" type="button" onClick={handleMetadataSubmit}>Save</button>
+                    </div>
+            )}
+{/*             <button className="save-book"type="button" onClick={handleAddBook}>Import Book</button>*/}    
             </>
            )}
+
            {rightCol==='quotes' && (
             <>
              <h1>Qoutes box</h1>
@@ -223,7 +287,7 @@ const handleLogin=async()=>{
 
 
     </>
-  )
+    )
 }
 
 export default Robot

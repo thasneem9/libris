@@ -91,7 +91,7 @@ justify-content: space-around;
   transform:scale(1.1);
   transition:transform 0.2s ease;
 }
-.col-2>button:hover{
+.save-book:hover{
 
   background-color:#eb88fce7 ;
    transform:scale(1.1);
@@ -165,7 +165,7 @@ justify-content: space-around;
 }
 
 
-.col-2>button{
+.save-book{
     padding:10px;
     margin:15px;
         background-color:#e836e896 ;
